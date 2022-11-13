@@ -28,7 +28,7 @@ app.get('/weather/shutdown', (req, res) => {
   res.status(200).send('ok')
 });
 
-app.get('/weather/restart', (req, res) => {
+app.get('/weather/reboot', (req, res) => {
   // perform the reset script here
   const process = exec("sudo reboot");
   res.sendStatus(200);
