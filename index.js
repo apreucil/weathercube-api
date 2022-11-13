@@ -49,6 +49,20 @@ app.get('/weather/restart-program', (req, res) => {
   res.sendStatus(200);
 })
 
+app.get('/weather/test_colors', (req, res) => {
+  // running a python file to restart the weather cube script
+  const pyProc = spawn('python3', ["/home/admin/Desktop/test_colors.py"]);
+
+  pyProc.stdout.on('data', (data) => {
+    const buf = Buffer.from(data);
+    console.log(buf.toString())
+  });
+
+  console.log('testing colors')
+
+  res.sendStatus(200);
+})
+
 app.listen(port, () => {
   console.log(`now listening on localhost:${port}`);
 })
