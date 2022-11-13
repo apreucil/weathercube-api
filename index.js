@@ -37,7 +37,7 @@ app.get('/weather/restart', (req, res) => {
 
 app.get('/weather/restart-program', (req, res) => {
   // running a python file to restart the weather cube script
-  const pyProc = spawn('python3', ["./helloworld.py"]);
+  const pyProc = spawn('python3', ["/home/admin/Pullcheck/main.py"]);
 
   pyProc.stdout.on('data', (data) => {
     const buf = Buffer.from(data);
