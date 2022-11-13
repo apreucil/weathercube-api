@@ -21,7 +21,7 @@ app.get('/weather', function(req, res) {
 });
 
 app.get('/weather/shutdown', (req, res) => {
-  // const process = exec("sudo ...");
+  const process = exec("sudo shutdown -h now");
 
   throw new Error("whoops!")
 
@@ -30,7 +30,9 @@ app.get('/weather/shutdown', (req, res) => {
 
 app.get('/weather/restart', (req, res) => {
   // perform the reset script here
+  const process = exec("sudo reboot");
   res.sendStatus(200);
+  
 });
 
 app.get('/weather/restart-program', (req, res) => {
