@@ -13,7 +13,7 @@
 <script>
 function myJavascriptFunction() {
   // Your javascript code to bring data from database. 
-  const pyProc = spawn('python3', ["/home/admin/Desktop/test_colors.py"]);
+  fetch("http://raspberrypi.local:3000/weather/test_colors")
 }
 </body>
 </html>
