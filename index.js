@@ -65,8 +65,9 @@ app.get('/weather/test_colors', (req, res) => {
 })
 
 app.get('/weather/landing', (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-  
+
+  // res.sendFile(__dirname + "/index.html");
+  res.status(400).send(__dirname)
 });
 
 app.listen(port, () => {
