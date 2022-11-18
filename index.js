@@ -15,7 +15,7 @@ app.get('/weather', function(req, res) {
   //   }
   // });
 
-  res.status(400).send("wrong password")
+  res.status(400).send("Welcome to Weather Tube!")
 
   res.send({ ssid, pass });
 });
@@ -65,7 +65,7 @@ app.get('/weather/test_colors', (req, res) => {
 })
 
 app.get('/weather/landing', (req, res) => {
-
+  // __dirname is /home/admin/weathercubeAPI
   res.sendFile(__dirname + "/index.html");
   // res.status(400).send(__dirname)
 });
