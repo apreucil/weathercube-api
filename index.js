@@ -64,6 +64,11 @@ app.get('/weather/test_colors', (req, res) => {
   res.sendStatus(200);
 })
 
+app.get('/weather/landing', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+  
+});
+
 app.listen(port, () => {
   console.log(`now listening on localhost:${port}`);
 })
