@@ -1,3 +1,5 @@
+import "./app.css";
+
 export function App() {
   function onButtonClick() {
     alert("hello world!");
