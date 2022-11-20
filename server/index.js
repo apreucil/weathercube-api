@@ -20,7 +20,7 @@ app.get("/weather", function (req, res) {
   //   }
   // });
 
-  res.status(400).send("Welcome to Weather Tube!");
+  res.status(200).send("Welcome to Weather Tube!");
 
   // res.send({ ssid, pass });
 });
