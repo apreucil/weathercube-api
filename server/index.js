@@ -68,12 +68,7 @@ app.get("/weather/test_colors", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/weather/landing", (req, res) => {
-  // __dirname is /home/admin/weathercubeAPI
-  res.sendFile(__dirname + "/index.html");
-  // res.status(400).send(__dirname)
-});
-
+// all URLs not matching a defined route will be relegated to the front-end
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
