@@ -14,5 +14,7 @@ app.get("*", (_, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Now listening on http://localhost:${port}/`);
+  console.log(
+    `[env:${process.env.NODE_ENV}] Now listening on http://localhost:${port}/`
+  );
 });
