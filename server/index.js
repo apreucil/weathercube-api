@@ -1,9 +1,12 @@
 const { exec, spawn } = require("child_process");
+const path = require("path");
 const express = require("express");
 const app = express();
 const port = 3000;
 
 // "http://raspberrypi.local:3000/weather/test_colors
+
+app.use(express.static(path.join(__dirname, "../dist")));
 
 app.get("/weather", function (req, res) {
   const ssid = req.query.ssid;
@@ -19,7 +22,7 @@ app.get("/weather", function (req, res) {
 
   res.status(400).send("Welcome to Weather Tube!");
 
-  res.send({ ssid, pass });
+  // res.send({ ssid, pass });
 });
 
 app.get("/weather/shutdown", (req, res) => {
@@ -69,6 +72,10 @@ app.get("/weather/landing", (req, res) => {
   // __dirname is /home/admin/weathercubeAPI
   res.sendFile(__dirname + "/index.html");
   // res.status(400).send(__dirname)
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 app.listen(port, () => {
