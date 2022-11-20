@@ -1,3 +1,7 @@
+const { exec, spawn } = require("child_process");
+
+// "http://raspberrypi.local:3000/weather/test_colors
+
 // define all the api endpoints
 module.exports = (app) => {
   app.get("/weather", main);

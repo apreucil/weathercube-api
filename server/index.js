@@ -1,10 +1,7 @@
-const { exec, spawn } = require("child_process");
 const path = require("path");
 const express = require("express");
 const app = express();
 const port = 3000;
-
-// "http://raspberrypi.local:3000/weather/test_colors
 
 app.use(express.static(path.join(__dirname, "../dist")));
 
