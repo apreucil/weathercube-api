@@ -5,14 +5,14 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, "../dist")));
 
-// set up all of the main api endpoints by requiring this file
-require("./routes")(app);
+// use a router for all api endpoints at this path
+app.use("/api", require("./routes"));
 
 // all URLs not matching a defined route will be relegated to the front-end
-app.get("*", (req, res) => {
+app.get("*", (_, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 app.listen(port, () => {
-  console.log(`now listening on localhost:${port}`);
+  console.log(`Now listening on http://localhost:${port}/`);
 });

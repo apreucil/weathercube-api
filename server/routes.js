@@ -1,19 +1,10 @@
+const express = require("express");
+const router = express.Router();
 const { exec, spawn } = require("child_process");
 
-// "http://raspberrypi.local:3000/weather/test_colors
+// http://raspberrypi.local:3000/api/test_colors
 
-// define all the api endpoints
-module.exports = (app) => {
-  app.get("/weather", main);
-  app.get("/weather/test-colors", testColors);
-  app.get("/weather/restart-program", restartProgram);
-  app.get("/weather/reboot", reboot);
-  app.get("/weather/shutdown", shutdown);
-};
-
-// all functions that run for a given api endpoint
-
-function main(req, res) {
+router.get("/", (req, res) => {
   const ssid = req.query.ssid;
   const pass = req.query.pass;
 
@@ -28,9 +19,9 @@ function main(req, res) {
   res.status(200).send("Welcome to Weather Tube!");
 
   // res.send({ ssid, pass });
-}
+});
 
-function testColors(req, res) {
+router.get("/test-colors", (req, res) => {
   // running a python file to restart the weather cube script
   const pyProc = spawn("python3", ["/home/admin/Desktop/test_colors.py"]);
 
@@ -42,9 +33,9 @@ function testColors(req, res) {
   console.log("testing colors");
 
   res.sendStatus(200);
-}
+});
 
-function restartProgram(req, res) {
+router.get("/restart-program", (req, res) => {
   // running a python file to restart the weather cube script
   // test comment
   const pyProc = spawn("python3", ["/home/admin/Pullcheck/main.py"]);
@@ -57,18 +48,20 @@ function restartProgram(req, res) {
   console.log("test");
 
   res.sendStatus(200);
-}
+});
 
-function reboot(req, res) {
+router.get("/reboot", (req, res) => {
   // perform the reset script here
   const process = exec("sudo reboot");
   res.sendStatus(200);
-}
+});
 
-function shutdown(req, res) {
+router.get("/shutdown", (req, res) => {
   const process = exec("sudo shutdown -h now");
 
   throw new Error("whoops!");
 
   res.status(200).send("ok");
-}
+});
+
+module.exports = router;
