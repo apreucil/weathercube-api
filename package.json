@@ -2,10 +2,12 @@
   "name": "weatherapi",
   "version": "1.0.0",
   "description": "This is a dummy description",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "build-watch": "parcel watch ./client/index.html",
+    "start-watch": "nodemon server/index.js",
+    "dev": "concurrently --kill-others \"npm:start-watch\" \"npm:build-watch\"",
+    "build": "parcel build ./client/index.html",
+    "start": "npm run build && node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,6 +18,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20",
     "parcel": "^2.8.0"
   }
 }
