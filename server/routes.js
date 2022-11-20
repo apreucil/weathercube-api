@@ -1,8 +1,11 @@
 const express = require("express");
-const router = express.Router();
+const morgan = require("morgan");
 const { exec, spawn } = require("child_process");
+const router = express.Router();
 
 // http://raspberrypi.local:3000/api/test_colors
+
+router.use(morgan(process.env.NODE_ENV === "production" ? "tiny" : "dev"));
 
 router.get("/", (req, res) => {
   const ssid = req.query.ssid;
