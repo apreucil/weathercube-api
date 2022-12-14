@@ -8,20 +8,17 @@ const router = express.Router();
 router.use(morgan(process.env.NODE_ENV === "production" ? "tiny" : "dev"));
 
 router.get("/", (req, res) => {
-  const ssid = req.query.ssid;
-  const pass = req.query.pass;
+  const yourscript = exec("setupssid.sh", (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
 
-  // const yourscript = exec("fetch-os-api-spec.sh", (error, stdout, stderr) => {
-  //   console.log(stdout);
-  //   console.log(stderr);
-  //   if (error !== null) {
-  //     console.log(`exec error: ${error}`);
-  //   }
-  // });
+    if (error !== null) {
+      console.log(`exec error: ${error}`);
+      return res.sendStatus(500);
+    }
 
-  res.status(200).send("Welcome to Weather Tube!");
-
-  // res.send({ ssid, pass });
+    return res.sendStatus(200);
+  });
 });
 
 router.get("/test-colors", (req, res) => {
