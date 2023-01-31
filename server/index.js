@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.use(express.json())
 app.use(express.static(path.join(__dirname, "../dist")));
 
 // use a router for all api endpoints at this path
