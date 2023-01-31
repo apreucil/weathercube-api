@@ -61,11 +61,20 @@ export default function MyApp() {
     // this is analogous to componentDidMount
   }, [])
 
-  
+  const containerStyles = {
+    width: "100vh",
+    height: "100vh",
+    // border: "5px solid red",
+    display: "flex",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="md">
+      <Container maxWidth="md" sx={containerStyles}>
         <AddNetworkForm />
       </Container>
     </React.Fragment>

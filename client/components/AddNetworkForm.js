@@ -5,20 +5,22 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const AddNetworkForm = (props) => {
-    const boxStyles = {
+const styles = {
+    container: {
         bgcolor: '#ffffff', 
-        height: '100vh', 
-        border: "5px solid black", 
-        borderRadius: 10,
+        // border: "5px solid black", 
+        // borderRadius: 10,
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    }
+    },
+    form: {
 
+    }
+}
+
+const AddNetworkForm = (props) => {
     return (
-        <Box sx={boxStyles}>
-          <FormControl fullWidth>
+        <Box sx={styles.container}>
+          <FormControl fullWidth sx={styles.form}>
             <InputLabel id="network-name">SSID</InputLabel>
             <Select >
               <MenuItem value={"dummy"}>Test</MenuItem>
