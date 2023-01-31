@@ -19,7 +19,10 @@ const TEST_WPA_CONFIG_PATH = "testfile.txt";
  * @returns {string[]}
  */
 function parseScanResults(stdout) {
-  return ["mock_wifi_network_1", "mock_wifi_network_2", "mock_wifi_network_3"];
+    return stdout
+        .replace(/\tSSID\: /mg, "")
+        .split("\n")
+        .filter(s => s.length);
 }
 
 /**
