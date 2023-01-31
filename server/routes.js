@@ -66,14 +66,12 @@ function buildWPAEntry(ssid, password) {
  * Endpoint that takes in a network name and password, and adds a new entry to the wpa_supplicant.conf
  */
 router.get('/setup', (req, res) => {
-  console.log(req.query)
   const { ssid, password } = req.query;
 
   try {
     // create a new entry with the given params and construct the command
     const entry = buildWPAEntry(ssid, password);
     const command = `echo '${entry}' | sudo tee -a ${WPA_CONFIG_PATH}`;
-    console.log(command)
     // execute the command
     exec(command, (error, stdout, stderr) => {  
       // on any error, throw
