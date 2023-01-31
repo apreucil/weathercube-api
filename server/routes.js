@@ -31,7 +31,7 @@ function parseScanResults(stdout) {
 router.get("/scan", (req, res) => {
 
   try {
-    const command = "setupssid.sh";
+    const command = `sudo iw dev wlan0 scan | egrep "SSID:"`;
     exec(command, (error, stdout, stderr) => {
 
       // error handling
@@ -59,23 +59,25 @@ router.get("/scan", (req, res) => {
  */
 function buildWPAEntry(ssid, password) {
   if (!(ssid && password)) throw new Error("missing required params [ssid | password]");
-  return `\nnetwork={\n\tssid=\x22${ssid}\x22\n\tpsk=\x22${password}\x22\n\tkey_mgmt=WPA-PSK\n}`
+  return `\nnetwork={\n\tssid="${ssid}"\n\tpsk="${password}"\n\tkey_mgmt=WPA-PSK\n}`
 }
 
 /**
  * Endpoint that takes in a network name and password, and adds a new entry to the wpa_supplicant.conf
  */
-router.post('/setup', (req, res) => {
-  const { ssid, password } = req.body;
+router.get('/setup', (req, res) => {
+  console.log(req.query)
+  const { ssid, password } = req.query;
 
   try {
     // create a new entry with the given params and construct the command
     const entry = buildWPAEntry(ssid, password);
-    const command = `echo "${entry}" >> ${WPA_CONFIG_PATH}`;
-
+    const command = `echo '${entry}' | sudo tee -a ${WPA_CONFIG_PATH}`;
+    console.log(command)
     // execute the command
     exec(command, (error, stdout, stderr) => {  
       // on any error, throw
+      console.log(arguments)
       if (error !== null || stderr.length) {
         stderr.length && console.log(`stderr: ${stderr}`);
         error && console.log(`exec error: ${error}`);
@@ -88,6 +90,7 @@ router.post('/setup', (req, res) => {
     })
   } catch (error) {
     // catch the error here and respond with a generic error
+    console.log(error)
     return res.sendStatus(500);
   }
 })
