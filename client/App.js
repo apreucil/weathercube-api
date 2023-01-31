@@ -8,6 +8,8 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
+import AddNetworkForm from './components/AddNetworkForm';
+
 const baseURL = "http://localhost:3000/api";
 
 async function getNetworkNames() {
@@ -59,20 +61,12 @@ export default function MyApp() {
     // this is analogous to componentDidMount
   }, [])
 
-  const boxStyles = {
-    bgcolor: '#ffffff', 
-    height: '100vh', 
-    border: "5px solid black", 
-    borderRadius: 10,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  }
+  
   return (
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="md">
-      
+        <AddNetworkForm />
       </Container>
     </React.Fragment>
   );

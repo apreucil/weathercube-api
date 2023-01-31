@@ -6,6 +6,16 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 const AddNetworkForm = (props) => {
+    const boxStyles = {
+        bgcolor: '#ffffff', 
+        height: '100vh', 
+        border: "5px solid black", 
+        borderRadius: 10,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    }
+
     return (
         <Box sx={boxStyles}>
           <FormControl fullWidth>
